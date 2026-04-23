@@ -16,13 +16,6 @@ ENV PATH=${PMD_HOME}/bin:${PATH}
 ARG PMD_VERSION
 
 RUN set -eux; \
-    apk add --no-cache \
-        # currently needed to run PMD, until https://github.com/pmd/pmd/pull/5623
-        bash \
-    ; \
-    rm -rf /var/cache/apk/*
-
-RUN set -eux; \
     wget -O /pmd-dist-${PMD_VERSION}-bin.zip https://github.com/pmd/pmd/releases/download/pmd_releases%2F${PMD_VERSION}/pmd-dist-${PMD_VERSION}-bin.zip; \
     wget -O /pmd-dist-${PMD_VERSION}-bin.zip.asc https://github.com/pmd/pmd/releases/download/pmd_releases%2F${PMD_VERSION}/pmd-dist-${PMD_VERSION}-bin.zip.asc || true; \
     if [ -e /pmd-dist-${PMD_VERSION}-bin.zip.asc ]; then \
